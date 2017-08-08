@@ -3,6 +3,7 @@ package com.example.demo;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,7 +14,8 @@ import com.example.demo.service.CustomerServiceImpl;
 @RestController
 public class CustomerBackendRestController {
 	
-	CustomerService customerService = new CustomerServiceImpl();
+	@Autowired
+	private CustomerService customerService;
 	
 	/*private static List<Customer> customers = new ArrayList<Customer>();
 
