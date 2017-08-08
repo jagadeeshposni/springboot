@@ -7,9 +7,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.service.CustomerService;
+import com.example.demo.service.CustomerServiceImpl;
+
 @RestController
 public class CustomerBackendRestController {
-	private static List<Customer> customers = new ArrayList<Customer>();
+	
+	CustomerService customerService = new CustomerServiceImpl();
+	
+	/*private static List<Customer> customers = new ArrayList<Customer>();
 
 	static {
 		Customer customer1 = new Customer();
@@ -38,16 +44,16 @@ public class CustomerBackendRestController {
 		customers.add(customer4);
 		customers.add(customer5);
 	}
-	
+	*/
 	@RequestMapping("/")
 	public List<Customer> getAllCustomers(){
-		return customers;
+		return customerService.getAllCustomers();
 	}
 	
 	@RequestMapping("/customer")
 	public Customer getCustomerByID(@RequestParam(value="id") long id) {
 		
-		for(Customer customer: customers) {
+		for(Customer customer: customerService.getAllCustomers()) {
 			if(customer.getId() == id) {
 				return customer;
 			}
@@ -57,37 +63,3 @@ public class CustomerBackendRestController {
 		
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
