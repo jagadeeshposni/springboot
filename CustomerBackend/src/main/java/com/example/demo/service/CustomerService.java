@@ -10,4 +10,8 @@ public interface CustomerService {
 	
 	public Customer getCustomerById(long id);
 
+	public Customer getCustomerByEmail(String email);
+	
+	public Customer getCustomerByEmailAndName(String email, String name);
+
 }

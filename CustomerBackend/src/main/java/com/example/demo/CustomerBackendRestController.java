@@ -11,26 +11,20 @@ import com.example.demo.service.CustomerService;
 
 @RestController
 public class CustomerBackendRestController {
-	
+
 	@Autowired
 	private CustomerService customerService;
-	
-	
-	@RequestMapping("/")
-	public List<Customer> getAllCustomers(){
+
+	@RequestMapping("/customers")
+	public List<Customer> getAllCustomers() {
 		return customerService.getAllCustomers();
 	}
-	
+
 	@RequestMapping("/customer")
-	public Customer getCustomerByID(@RequestParam(value="id") long id) {
-		
-		for(Customer customer: customerService.getAllCustomers()) {
-			if(customer.getId() == id) {
-				return customer;
-			}
-		}
-		
-		return null;
-		
+	public Customer getCustomerByID(@RequestParam(value = "name") String name, 
+									@RequestParam(value = "email") String email) {
+
+		return customerService.getCustomerByEmailAndName(email, name);
+
 	}
 }
